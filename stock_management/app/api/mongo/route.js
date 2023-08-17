@@ -3,28 +3,19 @@ import { NextResponse } from "next/server";
 
 
 export async function GET(request) {
-    return NextResponse.json({ a: 34 })
+
+    const uri = "mongodb+srv://adilrana03:0p5LiREP79mrJbsI@cluster1.u50gzns.mongodb.net/";
+
+    const client = new MongoClient(uri);
+    try {
+        const database = client.db('stock_management');
+        const movies = database.collection('stocks');
+        const query = {};
+        const movie = await movies.findOne(query);
+        return NextResponse.json({ a: 34, movie })
+
+        console.log(movie);
+    } finally {
+        await client.close();
+    }
 }
-
-
-// Replace the uri string with your connection string.
-// const uri = "<connection string uri>";
-
-// const client = new MongoClient(uri);
-
-// async function run() {
-//     try {
-//         const database = client.db('sample_mflix');
-//         const movies = database.collection('movies');
-
-//         // Query for a movie that has the title 'Back to the Future'
-//         const query = { title: 'Back to the Future' };
-//         const movie = await movies.findOne(query);
-
-//         console.log(movie);
-//     } finally {
-//         // Ensures that the client will close when you finish/error
-//         await client.close();
-//     }
-// }
-// run().catch(console.dir);
