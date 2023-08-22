@@ -13,7 +13,6 @@ export async function GET(request) {
         const query = {};
         const movie = await movies.findOne(query);
         return NextResponse.json({ a: 34, movie })
-
         console.log(movie);
     } finally {
         await client.close();

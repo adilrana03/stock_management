@@ -16,26 +16,32 @@ const page = () => {
         }
         fetchProducts()
     }, [])
+    const handleClick = (e) => {
+        console.log(e);
+    }
 
     return (
         <div>
             <Header />
             <div className="container my-8 mx-auto" >
-                <h1 className="text-3xl font-semibold mb-6">Display Current Stock</h1>
-                <div className='grid grid-cols-3'>
-
+                <h1 className="text-3xl font-semibold mb-6 text-center">Display Current Stock</h1>
+                <div className='grid grid-cols-3 gap-3'>
                     {products.map((e, i) => {
-                        return <div >
-                            <div >
-                                <img src={e.url} alt="" width={400} height={300} />
+                        return <div className='m-auto shadow-2xl p-3 rounded-lg'>
+                            <div className='h-[220px]'>
+                                <img src={e.url} alt="" className='h-[200px] w-[300px]' />
                             </div>
-                            <h3>{e.name}</h3>
-                            <h3>{e.price}</h3>
-                            <button className='bg-amber-300 rounded-lg cursor-pointer text-white'>Add to Cart</button>
+                            <div className='p-4 flex m-auto'>
+                                <div className='mr-12'>
+                                    <h3>{e.name}</h3>
+                                    <h3>₹: {e.price}</h3>
+                                </div>
+                                <div>
+                                    <button className='bg-green-400 rounded-lg cursor-pointer text-white p-1' onClick={() => handleClick(e._id)}>Add to Cart</button>
+                                </div>
+                            </div>
                         </div>
                     })}
-
-
                 </div>
             </div>
         </div>

@@ -2,6 +2,9 @@
 import Header from '@/components/Header'
 import Image from 'next/image'
 import { useState, useEffect } from 'react'
+import { useContext } from 'react'
+import { useGlobalContext } from './context/store'
+
 
 
 export default function Home() {
@@ -12,6 +15,10 @@ export default function Home() {
   const [loading, setLoading] = useState(false)
   const [loadingaction, setLoadingaction] = useState(false)
   const [dropdown, setDropdown] = useState([])
+
+
+  const name = useContext(useGlobalContext);
+  // console.log("name->" + name);
 
 
   useEffect(() => {
@@ -88,31 +95,6 @@ export default function Home() {
     e.preventDefault();
   }
 
-  // const deleteProduct = async (e) => {
-  //   try {
-  //     const response = await fetch('/api/deleteProduct', {
-  //       method: 'DELETE',
-  //       headers: {
-  //         'Content-Type': 'application/json'
-  //       },
-  //       body: JSON.stringify(e)
-  //     });
-
-  //     if (response.ok) {
-  //       // Product added successfully
-  //       setAlert("Your Product has been added!")
-  //       setProductForm({})
-  //     } else {
-  //       console.error('Error adding product');
-  //     }
-  //   } catch (error) {
-  //     console.error('Error:', error);
-  //   }
-  //   // Fetch all the products again to sync back
-  //   const response = await fetch('/api/product')
-  //   let data = await response.json()
-  //   setProducts(data.products)
-  // }
 
 
 
