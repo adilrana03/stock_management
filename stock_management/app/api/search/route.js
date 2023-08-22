@@ -5,7 +5,7 @@ export async function GET(request) {
     const query = request.nextUrl.searchParams.get("query")
     console.log(query);
     // Replace the uri string with your connection string.
-    const uri = "mongodb+srv://adilrana03:0p5LiREP79mrJbsI@cluster1.u50gzns.mongodb.net/";
+    const uri = process.env.MONGODB_URI;
     const client = new MongoClient(uri);
     try {
         const database = client.db('stock_management');

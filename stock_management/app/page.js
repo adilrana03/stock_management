@@ -18,7 +18,7 @@ export default function Home() {
 
 
   const name = useContext(useGlobalContext);
-  // console.log("name->" + name);
+  // console.log("name->" + process.env.NAME);
 
 
   useEffect(() => {
